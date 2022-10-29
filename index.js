@@ -40,21 +40,35 @@ const trocarOperacao = (evento) => {
   valor.disabled = evento.target.value === 'SALDO';
 };
 
+const obterConta = (conta) => {
+  const contaCliente = contasClientes.find((c) => c.conta === conta);
+
+  return contaCliente;
+};
+
 const sacar = () => {};
 
 const depositar = () => {};
 
-const consultarSaldo = () => {};
+const consultarSaldo = (conta) => {
+  const contaCliente = obterConta(conta);
+
+  alert(`Saldo atual: ${contaCliente.saldo}`);
+};
 
 const validarConta = (conta, senha) => {
-  const contaCliente = contasClientes.find((c) => c.conta === conta);
+  const contaCliente = obterConta(conta);
 
   return contaCliente && contaCliente.senha === senha ? true : false;
 };
 
 const efetuarOperacao = (evento) => {
   evento.preventDefault();
-  const contaValida = validarConta(parseInt(evento.target.conta.value), evento.target.senha.value);
+
+  const conta = parseInt(evento.target.conta.value);
+  const senha = evento.target.senha.value;
+
+  const contaValida = validarConta(conta, senha);
 
   if (contaValida) {
     switch (evento.target.operacao.value) {
@@ -65,7 +79,7 @@ const efetuarOperacao = (evento) => {
         depositar();
         break;
       case 'SALDO':
-        consultarSaldo();
+        consultarSaldo(conta);
         break;
       default:
         alert('Operação inválida');
