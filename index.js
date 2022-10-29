@@ -10,7 +10,7 @@ const validarSenhasIguais = (evento) => {
   return false;
 };
 
-const handleSubmit = (evento) => {
+const cadastrarConta = (evento) => {
   evento.preventDefault();
 
   if (validarSenhasIguais(evento)) {
@@ -31,4 +31,14 @@ const handleSubmit = (evento) => {
 };
 
 const form = document.getElementById('form');
-form.addEventListener('submit', handleSubmit);
+form.addEventListener('submit', cadastrarConta);
+
+// Funcões operações
+const trocarOperacao = (evento) => {
+  const valor = document.getElementById('valor');
+
+  valor.disabled = evento.target.value === 'SALDO';
+};
+
+const operacao = document.getElementById('operacao');
+operacao.addEventListener('change', trocarOperacao);

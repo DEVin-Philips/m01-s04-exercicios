@@ -19,39 +19,76 @@
     </header>
 
     <main class="main">
-      <h2>Formulário de Cadastro</h2>
+      <section class="section">
+        <h2>Formulário de Cadastro</h2>
 
-      <form id="form" class="form">
-        <div>
-          <label for="nome">Nome:</label>
-          <input required id="nome" value="teste" />
-        </div>
+        <form id="form" class="form">
+          <div>
+            <label for="nome">Nome:</label>
+            <input required id="nome" value="teste" />
+          </div>
 
-        <div>
-          <label for="cpf">CPF:</label>
-          <input required id="cpf" value="teste" />
-        </div>
+          <div>
+            <label for="cpf">CPF:</label>
+            <input required id="cpf" value="teste" />
+          </div>
 
-        <div>
-          <label for="celular">Celular:</label>
-          <input required type="number" id="celular" value="1234" />
-        </div>
+          <div>
+            <label for="celular">Celular:</label>
+            <input required type="number" id="celular" value="1234" />
+          </div>
 
-        <div>
-          <label for="senha">Senha:</label>
-          <input required id="senha" value="teste" />
-        </div>
+          <div>
+            <label for="senha">Senha:</label>
+            <input required id="senha" value="teste" />
+          </div>
 
-        <div>
-          <label for="confirmacao">Confirmação senha:</label>
-          <input required id="confirmacao" value="teste" />
-        </div>
+          <div>
+            <label for="confirmacao">Confirmação senha:</label>
+            <input required id="confirmacao" value="teste" />
+          </div>
 
-        <div>
-          <button type="reset" class="button">Limpar</button>
-          <button type="submit" class="button">Cadastrar</button>
-        </div>
-      </form>
+          <div>
+            <button type="reset" class="button">Limpar</button>
+            <button type="submit" class="button">Cadastrar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="section">
+        <h2>Ações</h2>
+
+        <form id="form-acoes" class="form">
+          <div>
+            <label for="operacao">Operacão:</label>
+            <select id="operacao" required>
+              <option value="SAQUE">Saque</option>
+              <option value="DEPOSITO">Depósito</option>
+              <option value="SALDO">Consulta Saldo</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="valor">Valor:</label>
+            <input id="valor" required />
+          </div>
+
+          <div>
+            <label for="conta">Conta:</label>
+            <input id="conta" type="number" required />
+          </div>
+
+          <div>
+            <label for="senha">Senha:</label>
+            <input id="senha" required />
+          </div>
+
+          <div>
+            <button type="reset" class="button">Limpar:</button>
+            <button type="submit" class="button">Confirmar:</button>
+          </div>
+        </form>
+      </section>
     </main>
 
     <footer class="footer">
