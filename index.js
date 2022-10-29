@@ -46,9 +46,46 @@ const obterConta = (conta) => {
   return contaCliente;
 };
 
-const sacar = () => {};
+const sacar = (conta, valor) => {
+  if (validarValor(valor)) {
+    if (validarSaldo(conta, valor)) {
+      let saldoAtual;
+      const contasAtualizadas = contasClientes.map((c) => {
+        if (c.conta === conta) {
+          saldoAtual = c.saldo - valor;
+          return { ...c, saldo: saldoAtual };
+        }
+        return c;
+      });
 
-const depositar = () => {};
+      contasClientes = contasAtualizadas;
+
+      alert(`Saque efetuado com sucesso! Saldo atual: ${saldoAtual}`);
+    } else {
+      alert('Saldo insuficiente');
+    }
+  } else {
+    alert('Valor inválido');
+  }
+};
+
+const depositar = (conta, valor) => {
+  if (validarValor(valor)) {
+    // const contaCliente = obterConta(conta);
+    // contaCliente.saldo += valor;
+
+    const contaCliente = { ...obterConta(conta) };
+    contaCliente.saldo += valor;
+
+    const contasAtualizadas = contasClientes.filter((c) => c.conta !== conta);
+    contasAtualizadas.push(contaCliente);
+    contasClientes = contasAtualizadas;
+
+    alert(`Deposito efetuado com sucesso! Saldo atual: ${contaCliente.saldo}`);
+  } else {
+    alert('Valor inválido');
+  }
+};
 
 const consultarSaldo = (conta) => {
   const contaCliente = obterConta(conta);
@@ -62,21 +99,32 @@ const validarConta = (conta, senha) => {
   return contaCliente && contaCliente.senha === senha ? true : false;
 };
 
+const validarValor = (valor) => {
+  return !isNaN(valor) && valor > 0;
+};
+
+const validarSaldo = (conta, valor) => {
+  const contaCliente = obterConta(conta);
+
+  return contaCliente.saldo >= valor;
+};
+
 const efetuarOperacao = (evento) => {
   evento.preventDefault();
 
   const conta = parseInt(evento.target.conta.value);
   const senha = evento.target.senha.value;
+  const valor = parseInt(evento.target.valor.value);
 
   const contaValida = validarConta(conta, senha);
 
   if (contaValida) {
     switch (evento.target.operacao.value) {
       case 'SAQUE':
-        sacar();
+        sacar(conta, valor);
         break;
       case 'DEPOSITO':
-        depositar();
+        depositar(conta, valor);
         break;
       case 'SALDO':
         consultarSaldo(conta);
